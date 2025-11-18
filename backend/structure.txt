@@ -1,0 +1,62 @@
+/home/ala/Agentbh/backend/
+├── .env
+├── Notebooks/
+│   ├── CG-POLICE FRANCAISE CORPS DE TOUS NAVIRES.pdf
+│   ├── CG-POLICE FRANCAISE CORPS DE TOUS NAVIRES.pdf:Zone.Identifier
+│   ├── Données_Assurance_S1.2_S2.2.xlsx
+│   ├── Données_Assurance_S1.2_S2.2.xlsx:Zone.Identifier
+│   ├── Exemples_questions_reponses.xlsx
+│   ├── Exemples_questions_reponses.xlsx:Zone.Identifier
+│   ├── faq_documents.json
+│   ├── qdrant.ipynb
+│   └── test.xlsx
+├── __pycache__/
+│   ├── api.cpython-312.pyc
+│   └── main.cpython-312.pyc
+├── api.py
+├── auth/
+├── core/
+│   ├── __init__.py
+│   ├── __pycache__/
+│   │   ├── __init__.cpython-312.pyc
+│   │   └── config.cpython-312.pyc
+│   └── config.py
+├── models/
+│   ├── __init__.py
+│   └── conversation.py
+├── requirements.txt
+├── routers/
+│   ├── __init__.py
+│   ├── __pycache__/
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── auth.cpython-312.pyc
+│   │   ├── chat.cpython-312.pyc
+│   │   └── conversations.cpython-312.pyc
+│   ├── auth.py
+│   ├── chat.py
+│   └── conversations.py
+├── services/
+│   ├── __init__.py
+│   ├── __pycache__/
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── llm.cpython-312.pyc
+│   │   ├── redis.cpython-312.pyc
+│   │   └── supabase.cpython-312.pyc
+│   ├── redis.py
+│   └── supabase.py
+├── structure.txt
+├── supabase/
+├── tools/
+│   ├── __pycache__/
+│   │   ├── base_tool.cpython-312.pyc
+│   │   └── create_devis_tool.cpython-312.pyc
+│   ├── base_tool.py
+│   └── create_devis_tool.py
+└── utils/
+    ├── __init__.py
+    ├── __pycache__/
+    │   ├── __init__.cpython-312.pyc
+    │   └── auth_utils.cpython-312.pyc
+    └── auth_utils.py
+
+15 directories, 44 files

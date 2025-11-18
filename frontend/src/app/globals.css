@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 🔥 Animation perso */
+@keyframes bounce-custom {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+.animate-bounce-custom {
+  animation: bounce-custom 1.2s ease-in-out;
+}
+
+
+/* globals.css ou styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vos styles existants... */
+
+/* Transition fluide pour la sidebar */
+.sidebar-transition {
+  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out;
+}
+
+/* Masquer le texte avec une animation fluide quand réduit */
+.sidebar-text-transition {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Animation pour les icônes quand la sidebar est réduite */
+.sidebar-icon-center {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive behavior pour mobile */
+@media (max-width: 1024px) {
+  .mobile-sidebar-hidden {
+    width: 0 !important;
+    min-width: 0 !important;
+    margin-left: -320px;
+  }
+}
+
+/* Tooltip pour les icônes en mode réduit */
+.sidebar-tooltip {
+  position: relative;
+}
+
+.sidebar-tooltip:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  margin-left: 8px;
+  z-index: 1000;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.sidebar-tooltip:hover::before {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-right-color: rgba(0, 0, 0, 0.8);
+  margin-left: 4px;
+  z-index: 1000;
+}
+
+/* Animation pour les conversations */
+.conversation-item {
+  transform: translateX(0);
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.conversation-item:hover {
+  transform: translateX(2px);
+}
+
+/* État actif pour les conversations */
+.conversation-active {
+  background: linear-gradient(135deg, #154c79 0%, #072641 100%) !important;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(21, 76, 121, 0.2);
+}
+
+/* Animation pour le bouton toggle */
+.toggle-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle-button:hover {
+  background-color: rgba(21, 76, 121, 0.1);
+  transform: scale(1.05);
+}
+
+/* Masquer le overflow pour les transitions */
+.sidebar-container {
+  overflow: hidden;
+}
+
+
+.message-content,  
+.streaming-content,  
+.final-content {  
+  font-size: 14px !important;  
+  line-height: 1.6 !important;  
+  font-family: inherit !important;  
+}  
+  
+/* Assurer la cohérence pour le contenu prose */  
+.prose, .prose-sm {  
+  font-size: 14px !important;  
+  line-height: 1.6 !important;  
+}  
+  
+/* Éviter les variations de taille pendant le streaming */  
+.chat-markdown {  
+  font-size: 14px !important;  
+  line-height: 1.6 !important;  
+}

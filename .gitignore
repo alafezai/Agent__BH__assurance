@@ -1,0 +1,21 @@
+# Node.js
+/node_modules
+/.next
+
+# Python
+.venvBH
+/__pycache__/
+
+# Environment
+.env
+*.env
+.env.*
+
+# Logs
+*.log
+logs/
+
+# AI / Models / Caches
+/.cache
+/ai-engine/models
+/ai-engine/checkpoints

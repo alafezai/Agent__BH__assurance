@@ -1,0 +1,25 @@
+-- Créer la table security_audit_log si elle n'existe pas
+CREATE TABLE IF NOT EXISTS security_audit_log (
+    log_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id TEXT NOT NULL,
+    conversation_id TEXT NOT NULL,
+    message_id TEXT,
+    event_type TEXT NOT NULL,
+    sensitive_data_types TEXT[],
+    detected_data JSONB,
+    ip_address TEXT,
+    user_agent TEXT,
+    timestamp TIMESTAMPTZ DEFAULT NOW(),
+    severity TEXT DEFAULT 'low',
+    action_taken TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Créer un index pour les recherches rapides
+CREATE INDEX IF NOT EXISTS idx_security_log_user ON security_audit_log(user_id);
+CREATE INDEX IF NOT EXISTS idx_security_log_timestamp ON security_audit_log(timestamp);
+CREATE INDEX IF NOT EXISTS idx_security_log_event_type ON security_audit_log(event_type);
+
+
+ALTER TABLE public.security_audit_log
+ADD COLUMN detected_count jsonb;
