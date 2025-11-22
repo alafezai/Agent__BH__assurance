@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  ############################
+  #        REDIS
+  ############################
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  ############################
+  #       SUPABASE
+  ############################
+
+  # Base de données Postgres
+  supabase-db:
+    image: supabase/postgres:15.1.0.46
+    container_name: supabase-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: supabase
+      POSTGRES_DB: postgres
+      POSTGRES_USER: supabase_admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - supabase_db_data:/var/lib/postgresql/data
+
+  # API PostgREST
+  supabase-rest:
+    image: supabase/postgrest:v12.0.0
+    container_name: supabase-rest
+    depends_on:
+      - supabase-db
+    environment:
+      PGRST_DB_URI: postgres://supabase_admin:supabase@supabase-db:5432/postgres
+      PGRST_DB_SCHEMA: public
+      PGRST_DB_ANON_ROLE: anon
+    ports:
+      - "3000:3000"
+
+  # Supabase Auth
+  supabase-auth:
+    image: supabase/gotrue:v2.62.0
+    container_name: supabase-auth
+    depends_on:
+      - supabase-db
+    environment:
+      GOTRUE_SITE_URL: "http://localhost:3000"
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://supabase_admin:supabase@supabase-db:5432/postgres
+      GOTRUE_JWT_SECRET: super-secret-jwt
+      GOTRUE_JWT_EXP: 3600
+    ports:
+      - "9999:9999"
+
+  # Supabase Studio (interface web)
+  supabase-studio:
+    image: supabase/studio:20240214-9edf705
+    container_name: supabase-studio
+    depends_on:
+      - supabase-rest
+      - supabase-auth
+    ports:
+      - "5173:3000"
+    environment:
+      STUDIO_PG_META_URL: "http://supabase-rest:3000"
+
+volumes:
+  redis_data:
+  supabase_db_data:

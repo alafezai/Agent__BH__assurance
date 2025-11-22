@@ -176,3 +176,15 @@ Project: Digital Transformation Initiative – BH Assurance (2025)
 💡 100% on-premise GenAI — no data ever leaves the BH Assurance infrastructure.
 
 
+
+
+## Preview Agent
+
+![Accueil](./docs/Images/1.png)
+![Chat Interface](./docs/Images/2.png)
+![Dashboard](./docs/Images/3.png)
+
+![Dashboard](./docs/Images/5.png)
+
+
+
